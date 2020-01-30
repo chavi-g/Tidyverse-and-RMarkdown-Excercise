@@ -1,0 +1,48 @@
+---
+title: "My Rmd Document"
+author: "Chavi Gupta"
+date: "`r format(Sys.time(),'%d %B %Y')`"
+bibliography: example.bib
+output: bookdown::html_document2
+---
+
+Here is some inline code `r sum(1,2)`.
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+```{r, starwars-plot, fig.cap="A ggplot of starwars stuff", fig.align='center'}
+starwars %>% 
+  filter(species == "Human") %>%
+  ggplot() + 
+  aes(x = height, y = mass) +
+  geom_point()
+```
+
+We can see a plot of starwars data in Figure \@ref(fig:starwars-plot)
+
+```{r starwars-tbl}
+starwars %>%
+  filter(species == "Human") %>%
+  select(name, height, mass, homeworld) %>%
+  knitr::kable(caption = "A knitr table of starwars data")
+```
+
+We can see data about the Human species in Table \@ref(tab:starwars-tbl)
+
+```{r, my-fig, fig.cap="My non-code figure"}
+knitr::include_graphics("https://i.ebayimg.com/images/g/9CUAAOSwVkBd2hz6/s-l400.jpg")
+```
+
+Elections are coming... Figure \@ref(fig:my-fig)
+
+Speaking about starwars, have you read this cool research paper on the Starwars Botnet? [@echeverria2017discovery]
+
+Here are a few papers on reproducibilty 
+
+- @barba2018terminologies 
+- @plesser2018reproducibility
+
+# References cited
+
